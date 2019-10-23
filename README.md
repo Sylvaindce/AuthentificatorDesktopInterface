@@ -11,5 +11,5 @@ Requierements:
 # Direct download
 https://github.com/Sylvaindce/AuthentificatorDesktopInterface/blob/master/out/artifacts/ADI_jar/ADI.jar
 
-Author:
+# Author
 Sylvaindce
