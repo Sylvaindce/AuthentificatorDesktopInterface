@@ -1,11 +1,13 @@
 import Gui.Gui;
 import Tools.Algo;
+import Tools.Tools;
 
 public class ADI {
+
     public static void main(String[] args) {
         try {
-            Gui adi_gui = new Gui();
-            Algo adi_algo = new Algo();
+            new Gui();
+            new Algo();
         } catch (Exception e) {
             System.out.print("Cannot execute ADI");
         }

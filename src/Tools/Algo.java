@@ -19,7 +19,7 @@ public class Algo {
         time_updater();
     }
 
-    public static int compute_otp(byte[] key, long tm) throws NoSuchAlgorithmException, InvalidKeyException {
+    public static String compute_otp(byte[] key, long tm) throws NoSuchAlgorithmException, InvalidKeyException {
         // Allocation d'un ByteBuffer pour time
         ByteBuffer time_tmp = ByteBuffer.allocate(8);
 
@@ -41,29 +41,16 @@ public class Algo {
         //Finalisation de l'instance avec la variable temps/ recuperation de la donnée chiffrée
         byte[] hash = mac.doFinal(time);
 
-        //System.out.print(hash);
-        //System.out.print(" :hash ");
         // Generation d'une chaine de 4octets (dynamic troncature) ref RFC4226
         int offset = hash[hash.length - 1] & 0xF;
 
-        //System.out.print(offset);
-        //System.out.print(" :offset ");
         // Utilisation d'un long en remplacement d'un unsigned int(pas de type unsigned en java)
         // et nous avons besoin de 32bits
-        long result = 0;
+        long result = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
 
-        // Extraction des 4bits de poids faible
-        for (int i = 0; i < 4; ++i) {
-            result <<= 8;
-            result |= (hash[offset + i] & 0xFF);
-        }
-
-        //System.out.print(result);
-        //System.out.print(" :result ");
         // Creation du code à 6 chiffres
-        int modulo = (int) Math.pow(10, 6);
-        result %= modulo;
-        return (int) result;
+        result %= (int) Math.pow(10, 6);
+        return String.format("%06d", result);
     }
 
     public static long get_cTime() {
@@ -78,7 +65,7 @@ public class Algo {
                 Date tmp_date = new Date();
                 int seconds = tmp_date.getSeconds();
                 if (seconds == 0 || seconds == 30) {
-                    System.out.println(seconds);
+                    Tools.updateOTP();
                 }
                 Gui.update_time(tmp_date);
             }

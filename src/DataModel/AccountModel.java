@@ -4,12 +4,13 @@ public class AccountModel {
 
     private String account;
     private String description;
-    private String key;
+    private String private_key;
+    private String otp = "--- ---";
 
-    public AccountModel(String account, String description, String key) {
-        this.account = account;
-        this.description = description;
-        this.key = key;
+    public AccountModel(String account, String description, String private_key) {
+        this.setAccount(account);
+        this.setDescription(description);
+        this.setPrivateKey(private_key);
     }
 
     public String getAccount() {
@@ -28,17 +29,30 @@ public class AccountModel {
         this.description = description;
     }
 
-    public String getKey() {
-        return this.key;
+    public String getPrivateKey() {
+        return this.private_key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setPrivateKey(String key) {
+        key = key.replaceAll("\\s", "");
+        key = key.toUpperCase();
+        this.private_key = key;
+    }
+
+    public String getOtp() {
+        return this.otp;
+    }
+
+    public void setOtp(String otp) {
+        if (!otp.matches("^\\s*$")) {
+            otp = otp.replaceAll("...", "$0 ");
+        }
+        this.otp = otp;
     }
 
     @Override
     public String toString() {
-        return getAccount() + ' ' + getDescription() + '\n' + getKey();
+        return getAccount() + ' ' + getDescription() + '\n' + getPrivateKey();
     }
 
 }
