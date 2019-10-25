@@ -29,7 +29,7 @@ First, build the project and artifact with your preferred IDE (such as IntelliJ)
 ```
   -$ out/windows/ADI/ADI.exe
 ```
-* Windows app icon and shortcut available in app_builder/windows_assets
+*** Windows app icon and shortcut available in app_builder/windows_assets
 
 ## Version
 1.0
