@@ -1,0 +1,17 @@
+{
+  "platform": "mac",
+  "jdk": "./jre/openjdk-170-u80-light-macosx-x86_64-bundle.zip",
+  "executable": "ADI",
+  "classpath": [
+    "../out/artifacts/ADI_jar/ADI.jar"
+  ],
+  "removelibs": [],
+  "mainclass": "fr.sylvaindce.ADI",
+  "vmargs": [
+    "Xmx1G"
+  ],
+  "resources": [],
+  "icon": "../src/fr/sylvaindce/Res/Icons/AppIcon.icns",
+  "minimizejre": "soft",
+  "output": "../out/macintosh/ADI.app"
+}
